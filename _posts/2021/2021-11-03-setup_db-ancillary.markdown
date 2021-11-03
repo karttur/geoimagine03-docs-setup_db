@@ -1,0 +1,111 @@
+---
+layout: article
+title: ancillary_v090_sql.json
+categories: setup_db
+excerpt:  Install the tables that defines ancillary data sources
+tags:: 
+    - ancillary
+date: 2021-11-03
+modified: 2021-11-03
+comments: true
+share: true
+---
+
+# ancillary (setup_db)
+
+###  Install the tables that defines ancillary data sources
+
+The json command file <span class='file'>ancillary_v090_sql.json</span> is part of karttur's GeoImagine project <span class='project'>setup_db</span>. Calling the json file will execute the following commands of the GeoImagine Framework.
+
+```
+{
+  "process": [
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ancillary",
+        "table": "dscompid",
+        "command": [
+          "dsid TEXT",
+          "compid TEXT",
+          "PRIMARY KEY (dsid, compid)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ancillary",
+        "table": "datasets",
+        "command": [
+          "dsid TEXT NOT NULL",
+          "dsversion VARCHAR(16) NOT NULL",
+          "dsname VARCHAR(32) NOT NULL",
+          "orgid TEXT NOT NULL",
+          "regionid varchar(64) NOT NULL",
+          "title VARCHAR(64)",
+          "label VARCHAR(256)",
+          "dataurl VARCHAR(256)",
+          "metaurl VARCHAR(256)",
+          "accessdate DATE",
+          "copyright TEXT",
+          "startdate DATE",
+          "enddate DATE",
+          "PRIMARY KEY(dsid)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ancillary",
+        "table": "dslayers",
+        "command": [
+          "dsid TEXT",
+          "datadir TEXT",
+          "datafile TEXT",
+          "datafiletype varchar(16)",
+          "metadir TEXT",
+          "theme VARCHAR(256)",
+          "subtheme VARCHAR(256)",
+          "PRIMARY KEY(dsid,datadir,datafile)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ancillary",
+        "table": "authors",
+        "command": [
+          "instid TEXT",
+          "authorid TEXT",
+          "authorurl TEXT",
+          "authoremail TEXT",
+          "authoraddress1 VARCHAR(64)",
+          "authoraddress2 VARCHAR(64)",
+          "authorcity VARCHAR(32)",
+          "authorzip VARCHAR(16)",
+          "authorstate VARCHAR(32)",
+          "authorcountryid CHAR(2)",
+          "authortel VARCHAR(32)",
+          "authorfax VARCHAR(32)",
+          "PRIMARY KEY(instid,authorid)"
+        ]
+      }
+    }
+  ]
+}
+```
