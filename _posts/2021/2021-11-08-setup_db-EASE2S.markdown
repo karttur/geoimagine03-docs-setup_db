@@ -1,0 +1,121 @@
+---
+layout: article
+title: EASE2S_v090_sql.json
+categories: setup_db
+excerpt:  Table for EASE GRID south
+tags:: 
+    - EASE2S
+date: 2021-11-08
+modified: 2021-11-08
+comments: true
+share: true
+---
+
+# EASE2S (setup_db)
+
+###  Table for EASE GRID south
+
+The json command file <span class='file'>EASE2S_v090_sql.json</span> is part of karttur's GeoImagine project <span class='project'>setup_db</span>. Calling the json file will execute the following commands of the GeoImagine Framework.
+
+```
+{
+  "process": [
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2s",
+        "table": "products",
+        "command": [
+          "dataid character(26)",
+          "startdate date",
+          "enddate date",
+          "resolkm smallint",
+          "temporal varchar(16)",
+          "version smallint",
+          "label TEXT",
+          "url varchar(255)",
+          "tgcomment varchar(255)",
+          "PRIMARY KEY (dataid,version)"
+        ]
+      }
+    },
+    {
+      "processid": "tableinsert",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2s",
+        "table": "products",
+        "command": {
+          "columns": [
+            "dataid",
+            "version",
+            "startdate",
+            "enddate",
+            "resolkm",
+            "temporal",
+            "label",
+            "url",
+            "tgcomment"
+          ],
+          "values": [
+            [
+              "'MOD29E1D'",
+              "6",
+              "'2000-02-24'",
+              "'2025-12-31'",
+              "4",
+              "'1D'",
+              "'MODIS/Terra Sea Ice Extent and IST Daily L3 Global 4km EASE-Grid Day, Version 6'",
+              "'https://nsidc.org/data/MOD29E1D/versions/6'",
+              "'Daily Sea ice at 4 km in EASE Grid - single file'"
+            ],
+            [
+              "'MYD29E1D'",
+              "6",
+              "'2000-02-24'",
+              "'2025-12-31'",
+              "4",
+              "'1D'",
+              "'MODIS/Terra Sea Ice Extent and IST Daily L3 Global 4km EASE-Grid Day, Version 6'",
+              "'https://nsidc.org/data/MOD29E1D/versions/6'",
+              "'Daily Sea ice at 4 km in EASE Grid - single file'"
+            ]
+
+          ]
+        }
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2s",
+        "table": "urldata",
+        "command": [
+          "fileid varchar(64)",
+          "filename character varying(128)",
+          "source character varying(32)",
+          "product varchar(24)",
+          "version character(3)",
+          "acqdate date",
+          "doy smallint",
+          "content varchar(16) DEFAULT 'original'",
+          "downloaded character(1) DEFAULT 'N'",
+          "organized character(1) DEFAULT 'N'",
+          "exploded character(1) DEFAULT 'N'",
+          "redundant character(1) DEFAULT 'N'",
+          "deleted character(1) DEFAULT 'N'",
+          "maskstatus character(1) DEFAULT 'Y'",
+          "PRIMARY KEY (fileid,product,version)"
+        ]
+      }
+    }
+  ]
+}
+```

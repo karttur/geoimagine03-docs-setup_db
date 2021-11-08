@@ -1,0 +1,307 @@
+---
+layout: article
+title: compositions_ease2_v090_sql.json
+categories: setup_db
+excerpt:  Install the tables defining all MDOIS compositions
+tags:: 
+    - compositions_ease2
+date: 2021-11-08
+modified: 2021-11-08
+comments: true
+share: true
+---
+
+# compositions ease2 (setup_db)
+
+###  Install the tables defining all MDOIS compositions
+
+The json command file <span class='file'>compositions_ease2_v090_sql.json</span> is part of karttur's GeoImagine project <span class='project'>setup_db</span>. Calling the json file will execute the following commands of the GeoImagine Framework.
+
+```
+{
+  "process": [
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2n",
+        "table": "compdef",
+        "command": [
+          "compid TEXT",
+          "content varchar(32)",
+          "layerid varchar(64)",
+          "prefix varchar(32)",
+          "scalefac real",
+          "offsetadd real",
+          "measure char(1) NOT NULL",
+          "dataunit varchar(32)",
+          "title varchar(255)",
+          "label varchar(255)",
+          "PRIMARY KEY (compid)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2n",
+        "table": "compprod",
+        "command": [
+          "compid TEXT",
+          "system varchar(16) NOT NULL",
+          "source TEXT",
+          "product varchar(32)",
+          "suffix varchar(64)",
+          "cellnull real",
+          "celltype varchar(8)",
+          "masked character(1) DEFAULT 'N'",
+          "title varchar(255)",
+          "label varchar(255)",
+          "frequency varchar(20)",
+          "PRIMARY KEY (compid,source,product,suffix)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2n",
+        "table": "layer",
+        "command": [
+          "layerid bigserial",
+          "compid TEXT",
+          "source TEXT",
+          "product varchar(32)",
+          "suffix varchar(64)",
+          "acqdatestr varchar(20)",
+          "acqdate date",
+          "doy smallint",
+          "createdate date DEFAULT CURRENT_DATE",
+          "xtile smallint",
+          "ytile smallint",
+          "xytile char(8)",
+          "PRIMARY KEY (compid,source,product,suffix,xtile,ytile,acqdatestr)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2n",
+        "table": "mask",
+        "command": [
+          "source TEXT",
+          "product varchar(32)",
+          "cellnull smallint",
+          "water smallint",
+          "cloudshadow smallint",
+          "snow smallint",
+          "cloud smallint",
+          "clear smallint",
+          "mask smallint ARRAY[3]",
+          "PRIMARY KEY (source,product)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2s",
+        "table": "compdef",
+        "command": [
+          "compid TEXT",
+          "content varchar(32)",
+          "layerid varchar(64)",
+          "prefix varchar(32)",
+          "scalefac real",
+          "offsetadd real",
+          "measure char(1) NOT NULL",
+          "dataunit varchar(32)",
+          "title varchar(255)",
+          "label varchar(255)",
+          "PRIMARY KEY (compid)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2s",
+        "table": "compprod",
+        "command": [
+          "compid TEXT",
+          "system varchar(16) NOT NULL",
+          "source TEXT",
+          "product varchar(32)",
+          "suffix varchar(64)",
+          "cellnull real",
+          "celltype varchar(8)",
+          "masked character(1) DEFAULT 'N'",
+          "title varchar(255)",
+          "label varchar(255)",
+          "frequency varchar(20)",
+          "PRIMARY KEY (compid,source,product,suffix)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2s",
+        "table": "layer",
+        "command": [
+          "layerid bigserial",
+          "compid TEXT",
+          "source TEXT",
+          "product varchar(32)",
+          "suffix varchar(64)",
+          "acqdatestr varchar(20)",
+          "acqdate date",
+          "doy smallint",
+          "createdate date DEFAULT CURRENT_DATE",
+          "xtile smallint",
+          "ytile smallint",
+          "xnyntile char(8)",
+          "PRIMARY KEY (compid,source,product,suffix,xtile,ytile,acqdatestr)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2s",
+        "table": "mask",
+        "command": [
+          "source TEXT",
+          "product varchar(32)",
+          "cellnull smallint",
+          "water smallint",
+          "cloudshadow smallint",
+          "snow smallint",
+          "cloud smallint",
+          "clear smallint",
+          "mask smallint ARRAY[3]",
+          "PRIMARY KEY (source,product)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2t",
+        "table": "compdef",
+        "command": [
+          "compid TEXT",
+          "content varchar(32)",
+          "layerid varchar(64)",
+          "prefix varchar(32)",
+          "scalefac real",
+          "offsetadd real",
+          "measure char(1) NOT NULL",
+          "dataunit varchar(32)",
+          "title varchar(255)",
+          "label varchar(255)",
+          "PRIMARY KEY (compid)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2t",
+        "table": "compprod",
+        "command": [
+          "compid TEXT",
+          "system varchar(16) NOT NULL",
+          "source TEXT",
+          "product varchar(32)",
+          "suffix varchar(64)",
+          "cellnull real",
+          "celltype varchar(8)",
+          "masked character(1) DEFAULT 'N'",
+          "title varchar(255)",
+          "label varchar(255)",
+          "frequency varchar(20)",
+          "PRIMARY KEY (compid,source,product,suffix)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2t",
+        "table": "layer",
+        "command": [
+          "layerid bigserial",
+          "compid TEXT",
+          "source TEXT",
+          "product varchar(32)",
+          "suffix varchar(64)",
+          "acqdatestr varchar(20)",
+          "acqdate date",
+          "doy smallint",
+          "createdate date DEFAULT CURRENT_DATE",
+          "xtile smallint",
+          "ytile smallint",
+          "xnyntile char(8)",
+          "PRIMARY KEY (compid,source,product,suffix,xtile,ytile,acqdatestr)"
+        ]
+      }
+    },
+    {
+      "processid": "createtable",
+      "overwrite": false,
+      "delete": false,
+      "parameters": {
+        "db": "karttur",
+        "schema": "ease2t",
+        "table": "mask",
+        "command": [
+          "source TEXT",
+          "product varchar(32)",
+          "cellnull smallint",
+          "water smallint",
+          "cloudshadow smallint",
+          "snow smallint",
+          "cloud smallint",
+          "clear smallint",
+          "mask smallint ARRAY[3]",
+          "PRIMARY KEY (source,product)"
+        ]
+      }
+    }
+  ]
+}
+```
